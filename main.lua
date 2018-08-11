@@ -1,11 +1,12 @@
-require "enet"
+enet = require "enet"
 function love.load()
   host = enet.host_create()
   dest = nil
-  server = host:connect("localhost:6789")
+  server = host:connect("192.168.15.15:6789")
   feedback = ""
   idx = -1
   is_connected  = false
+
 
   player = {}
   player.y = 300
