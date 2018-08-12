@@ -31,7 +31,7 @@ function love.load()
   ball = {}
   ball.w = 10
   ball.h = 10
-  ball.x = left_limit + ball.w/2
+  ball.x = player.x + ball.w/2
   ball.y = bottom_limit/2
   ball.vx = .5
   ball.vy = .5
@@ -103,11 +103,11 @@ function request_idx(event)
       idx = message[2]
       if idx == 1 then --player is left side and the other is not connected
         player.x = left_limit + player.w/2
-        ball.x = player.x + 30
+        ball.x = player.x + ball.w/2
       else --player is right side and all are connected
         player.x = right_limit - player.w/2
         enemy.x = left_limit + enemy.w/2
-        ball.x = enemy.x + 15
+        ball.x = enemy.x + ball.w/2
         enemy.can_draw = true
         all_can_play = true
         ball.can_draw = true

@@ -29,10 +29,10 @@ players[2].v = 4.5
 players[2].score = 0
 
 ball = {}
-ball.x = players[1].x + 15
-ball.y = players[1].y
 ball.w = 10
 ball.h = 10
+ball.x = players[1].x + ball.w/2
+ball.y = players[1].y
 ball.vx = .5
 ball.vy = .5
 ball.lambda = 1
