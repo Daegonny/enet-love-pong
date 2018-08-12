@@ -1,15 +1,16 @@
-require "enet"
+enet = require "enet"
 function love.load()
   host = enet.host_create()
   dest = nil
-  server = host:connect("localhost:6789")
+  server = host:connect("192.168.15.15:6789")
   feedback = ""
   idx = -1
   is_connected  = false
 
+
   player = {}
   player.y = 300
-  player.x = 0
+  player.x = 15
   player.w = 15
   player.h = 150
   player.score = 0
@@ -80,13 +81,13 @@ end
 
 function player_draw(p)
   if p.can_draw then
-    love.graphics.rectangle("fill", p.x, p.y, p.w, p.h )
+    love.graphics.rectangle("fill", (p.x - p.w/2), (p.y - p.h/2), p.w, p.h )
   end
 end
 
 function ball_draw(b)
   if b.can_draw then
-    love.graphics.rectangle("fill", b.x, b.y, b.w, b.h)
+    love.graphics.rectangle("fill", (b.x - b.w/2), (b.y - b.h/2), b.w, b.h)
   end
 end
 
@@ -98,9 +99,9 @@ function request_idx(event)
       idx = message[2]
       if idx == 1 then --player is left side and the other is not connected
         player.x = 0
-        ball.x = player.x + 15
+        ball.x = player.x + 30
       else --player is right side and all are connected
-        player.x = 800 - 15
+        player.x = 800 - 30
         enemy.x = 0
         ball.x = enemy.x + 15
         enemy.can_draw = true

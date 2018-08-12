@@ -33,7 +33,9 @@ ball.lambda = 1
 
 function test_n_solve_colision()
   for k, p in ipairs(players) do
+
 	
+
   end
 end
 
