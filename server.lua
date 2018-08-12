@@ -5,19 +5,26 @@ peers = {}
 
 players = {}
 
+right_limit = 800
+left_limit = 0
+top_limit = 0
+bottom_limit = 600
+
 players[1] = {}
-players[1].x  = 0
-players[1].y = 300
-players[1].old_y = 300
+players[2].w = 15
+players[2].h = 150
+players[1].x = left_limit + players[1].w/2
+players[1].y = bottom_limit/2
+players[1].old_y = bottom_limit/2
 players[1].v = 4.5
 players[1].score = 0
 
 players[2] = {}
-players[2].x  = 800 - 15
-players[2].y = 300
 players[2].w = 15
 players[2].h = 150
-players[2].old_y = 300
+players[2].x  = right_limit - players[2].w/2
+players[2].y = bottom_limit/2
+players[2].old_y = bottom_limit/2
 players[2].v = 4.5
 players[2].score = 0
 
@@ -34,13 +41,13 @@ ball.lambda = 1
 function test_n_solve_colision()
   for k, p in ipairs(players) do
 
-	
+
 
   end
 end
 
 function is_colliding(obj1, obj2)
---	if (obj1.x + obj1.w) 
+--	if (obj1.x + obj1.w)
 end
 
 
