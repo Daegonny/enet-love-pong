@@ -11,8 +11,8 @@ top_limit = 0
 bottom_limit = 600
 
 players[1] = {}
-players[2].w = 15
-players[2].h = 150
+players[1].w = 15
+players[1].h = 150
 players[1].x = left_limit + players[1].w/2
 players[1].y = bottom_limit/2
 players[1].old_y = bottom_limit/2
