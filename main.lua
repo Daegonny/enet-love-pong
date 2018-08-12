@@ -7,28 +7,32 @@ function love.load()
   idx = -1
   is_connected  = false
 
+  right_limit = 800
+  left_limit = 0
+  top_limit = 0
+  bottom_limit = 600
 
   player = {}
-  player.y = 300
-  player.x = 15
   player.w = 15
   player.h = 150
+  player.x = left_limit + player.w/2
+  player.y = bottom_limit/2
   player.score = 0
   player.can_draw = false
 
   enemy = {}
-  enemy.y = 300
-  enemy.x = 0
   enemy.w = 15
   enemy.h = 150
+  enemy.x = left_limit + enemy.w/2
+  enemy.y = bottom_limit/2
   player.score = 0
   enemy.can_draw = false
 
   ball = {}
-  ball.x = 0
-  ball.y = 300
   ball.w = 10
   ball.h = 10
+  ball.x = left_limit + ball.w/2
+  ball.y = bottom_limit/2
   ball.vx = .5
   ball.vy = .5
   ball.can_draw = false
@@ -98,11 +102,11 @@ function request_idx(event)
     if message[1] == 0 and message[3] == 1 then
       idx = message[2]
       if idx == 1 then --player is left side and the other is not connected
-        player.x = 0
+        player.x = left_limit + player.w/2
         ball.x = player.x + 30
       else --player is right side and all are connected
-        player.x = 800 - 30
-        enemy.x = 0
+        player.x = right_limit - player.w/2
+        enemy.x = left_limit + enemy.w/2
         ball.x = enemy.x + 15
         enemy.can_draw = true
         all_can_play = true
@@ -120,7 +124,7 @@ function request_enemy(event)
     --connect
     if message[1] == 0 and message[3] == 1 then
       if message[2] == 2 then
-        enemy.x = 800 -15
+        enemy.x = right_limit - enemy.w/2
         enemy.can_draw = true
         all_can_play = true
         ball.can_draw = true
