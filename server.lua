@@ -1,5 +1,5 @@
 require "enet"
-host = enet.host_create("localhost:6789")
+host = enet.host_create("0.0.0.0:6789", 2)
 message = ""
 peers = {}
 
@@ -9,7 +9,7 @@ players[1] = {}
 players[1].x  = 0
 players[1].y = 300
 players[1].old_y = 300
-players[1].v = .5
+players[1].v = 4.5
 players[1].score = 0
 
 players[2] = {}
@@ -18,7 +18,7 @@ players[2].y = 300
 players[2].w = 15
 players[2].h = 150
 players[2].old_y = 300
-players[2].v = .5
+players[2].v = 4.5
 players[2].score = 0
 
 ball = {}
@@ -34,10 +34,13 @@ ball.lambda = 1
 function test_n_solve_colision()
   for k, p in ipairs(players) do
 
-    if ((ball.x+ball.w)/2) 
-
+	
 
   end
+end
+
+function is_colliding(obj1, obj2)
+--	if (obj1.x + obj1.w) 
 end
 
 
