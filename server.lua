@@ -1,4 +1,7 @@
 require "enet"
+require "math"
+require "os"
+
 host = enet.host_create("0.0.0.0:6789", 2)
 message = ""
 peers = {}
@@ -37,6 +40,7 @@ ball.vx = .5
 ball.vy = .5
 ball.lambda = 1
 
+math.randomseed(os.time())
 
 function test_n_solve_colision()
   for k, p in ipairs(players) do
@@ -46,10 +50,19 @@ function test_n_solve_colision()
   end
 end
 
-function is_colliding(obj1, obj2)
---	if (obj1.x + obj1.w)
+function is_colliding_p1(p1, ball)
+  if (ball.x - ball.w/2) <= (p1.x + p1.w/2) and (ball.x + ball.w/2) >= (p1.x - p1.w/2) and
+      (ball.y + ball.h/2) >= (p1.y + p1.h/2) and (ball.y - ball.h/2) <= (p1.y - p1y.h/2) then
+      return true
+  else
+      return false
+  end
 end
 
+function is_colliding_p2(p2, ball)
+
+
+end
 
 function listen(event)
   if event and event.type == "receive" then
@@ -60,14 +73,14 @@ function listen(event)
       local idx = message[3]
       local dt = message[4]
       --move up
-      if message[2] == 0 then
+      if message[2] == 0  and (players[idx].y - players[idx].h/2) > top_limit then
         players[idx].old_y = players[idx].y
         players[idx].y = players[idx].y - (players[idx].v)
         local m = join({3, players[idx].y, idx})
         host:broadcast(m)
 
       --move down
-      elseif message[2] == 1 then
+    elseif message[2] == 1 and (players[idx].y + players[idx].h/2) < bottom_limit then
         players[idx].old_y = players[idx].y
         players[idx].y = players[idx].y + (players[idx].v)
         local m = join({3, players[idx].y, idx})
